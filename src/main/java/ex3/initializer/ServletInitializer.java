@@ -1,4 +1,4 @@
-package ex3.voluntary;
+package ex3.initializer;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
