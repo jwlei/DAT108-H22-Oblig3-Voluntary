@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles.css">
-    <title>Task 1</title>
-</head>
-<body>
-<!-- NAME FORM THYMELEAF -->
-    <form action="#" th:action="@{/task1-reponse}" th:object="${task1}" method="post">
-        <label for="name">Input your name:</label>
-        <input type="text" id="name" th:field="*{name}">
-        <input type="submit" value="Submit">
-    </form>
-</body>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+        <title>Task 1</title>
+    </head>
+        <body>
+            <!-- Greetings-form -->
+            <form action="/task1-greeting" modelAttribute="name">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <input type="submit" value="Submit">
+            </form>
+        </body>
 </html>

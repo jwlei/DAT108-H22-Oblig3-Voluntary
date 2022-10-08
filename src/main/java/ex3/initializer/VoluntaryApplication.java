@@ -11,3 +11,4 @@ public class VoluntaryApplication {
 	}
 	// URL: http://localhost:8080/
 }
+
