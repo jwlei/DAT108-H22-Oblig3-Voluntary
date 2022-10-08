@@ -9,5 +9,5 @@ public class VoluntaryApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VoluntaryApplication.class, args);
 	}
-
+	// URL: http://localhost:8080/
 }
