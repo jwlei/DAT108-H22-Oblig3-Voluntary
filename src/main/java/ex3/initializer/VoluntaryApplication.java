@@ -1,4 +1,4 @@
-package ex3.voluntary;
+package ex3.initializer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
