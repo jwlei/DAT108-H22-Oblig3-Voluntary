@@ -1,34 +1,18 @@
-/* General styling for the HTML and JSP files */
+html, body {
+height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
+    background: #f5f5f5;
+}
 
-.center {
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 10vh;
-    padding-top: 10%;
-}
-
-.input, .search-button {
-    text-align: center;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0.3em;
-    width: 15em;
-}
-
-.input_box {
-    display: flex;
-    flex-direction: row;
-}
-
-.hint {
-    visibility: hidden;
-}
-
-textarea:focus, input:focus{
-    outline: none;
 }
 
