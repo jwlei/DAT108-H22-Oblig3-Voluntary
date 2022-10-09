@@ -1,6 +1,5 @@
 package ex3.initializer.task1;
 
-import ex3.initializer.controller.HeaderController;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
