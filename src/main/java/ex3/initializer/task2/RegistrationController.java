@@ -4,10 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -18,8 +17,20 @@ import java.util.Map;
 @Controller
 public class RegistrationController {
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        /**
+         * Disallow other fields than below
+         */
+        binder.setAllowedFields("fname", "lname", "year", "areaCode", "phone", "email");
+    }
+
     @GetMapping(value ="/task2")
     public String sendToJsp(Model model) {
+        /**
+         * Create a new person object and add it to the model
+         * if it does not already exist
+         */
         if (!model.containsAttribute("person")) {
             model.addAttribute("person", new Person());
         }
@@ -30,6 +41,12 @@ public class RegistrationController {
     public String saveRegistration(@Valid @ModelAttribute Person person,
                                    RedirectAttributes ra,
                                    BindingResult bindingResult) {
+        /**
+         * Check if there are any errors
+         * If there are errors, redirect back to the form
+         * If there are no errors, add the person to the redirect attributes
+         * and redirect to the confirmation page
+         */
 
         if (bindingResult.hasErrors()) {
             return "redirect:/task2-register";
@@ -42,6 +59,10 @@ public class RegistrationController {
 
     @GetMapping(value ="/task2-success")
     public String showSuccess(Model model, HttpServletRequest request) {
+        /**
+         * Get the person object from the redirect attributes
+         * and add it to the model
+         */
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
         if (inputFlashMap != null) {
             model.addAttribute("person", inputFlashMap.get("person"));
@@ -50,7 +71,7 @@ public class RegistrationController {
     }
 
     @PostMapping(value="validate")
-    ResponseEntity<String> validate(@Valid @RequestBody Person person) {
+    ResponseEntity<String> validate(@Validated @RequestBody Person person) {
         return ResponseEntity.ok("valid");
     }
 
