@@ -16,3 +16,6 @@ body {
     text-align: center;
 }
 
+input[type='number'] {
+    -moz-appearance:textfield;
+}
