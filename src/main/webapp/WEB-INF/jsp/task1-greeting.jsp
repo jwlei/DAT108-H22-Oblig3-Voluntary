@@ -10,7 +10,7 @@
 	<body>
 			<h1>Task 1 result</h1>
 			<p>Default language was german</p>
-			<p>${header}</p>
+			<p>${accepted_lang}</p>
 			<h2><fmt:message key="greeting"/> ${name}</h2>
 			<a href="${pageContext.request.contextPath}index.html">Return to index</a>
 	</body>
