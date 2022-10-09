@@ -9,11 +9,11 @@
 </head>
     <body>
         <h1>Register</h1>
-            <form:form commandName="person" action="/task2-submit" method="post" modelAttribute="person">
+            <form:form action="/task2-submit" method="post" modelAttribute="person">
 
                 <form:label path="fname">First Name</form:label>
                 <form:input path="fname" type="text"/>
-                <form:errors path="fname"/><br>
+                <form:errors path="fname" cssClass="error"/><br>
 
                 <form:label path="lname">Last Name</form:label>
                 <form:input path="lname" type="text"/>
@@ -21,19 +21,19 @@
 
                 <form:label path="year">Birthyear</form:label>
                 <form:input path="year" type="number"/>
-                <form:errors path="year"/><br>
+                <form:errors path="year" cssClass="error"/><br>
 
                 <form:label path="areaCode">Areacode</form:label>
                 <form:input path="areaCode" type="text"/>
-                <form:errors path="areaCode"/><br>
+                <form:errors path="areaCode" cssClass="error"/><br>
 
                 <form:label path="phone">Phone</form:label>
                 <form:input path="phone" type="text"/>
-                <form:errors path="phone"/><br>
+                <form:errors path="phone" cssClass="error"/><br>
 
                 <form:label path="email">Email</form:label>
                 <form:input path="email" type="text"/>
-                <form:errors path="email"/><br>
+                <form:errors path="email" cssClass="error"/><br>
 
                 <input type="submit" value="Submit"/>
             </form:form>

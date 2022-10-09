@@ -15,8 +15,7 @@ public class Person {
     @Size(min = 3, max = 30, message="Last name must be between 3 and 30 characters")
     String lname;
 
-    @NotNull
-    @Pattern(regexp = "^[0-9]{4}$", message="Year must be 4 digits")
+    @NotNull(message="Year must be something")
     int year;
 
     @NotNull
@@ -30,15 +29,6 @@ public class Person {
     @NotNull
     @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", message="Email must be valid")
     String email;
-
-//    public Person(String fname, String lname, int year, String areaCode, String phone, String email) {
-//        this.fname = fname;
-//        this.lname = lname;
-//        this.year = year;
-//        this.areaCode = areaCode;
-//        this.phone = phone;
-//        this.email = email;
-//    }
 
 
     public String getFname() {

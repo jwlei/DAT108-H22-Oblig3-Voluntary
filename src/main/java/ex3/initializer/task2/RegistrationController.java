@@ -1,10 +1,8 @@
 package ex3.initializer.task2;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -21,6 +19,7 @@ public class RegistrationController {
     public void initBinder(WebDataBinder binder) {
         /**
          * Disallow other fields than below
+         * for security reasons
          */
         binder.setAllowedFields("fname", "lname", "year", "areaCode", "phone", "email");
     }
@@ -39,8 +38,8 @@ public class RegistrationController {
 
     @PostMapping(value ="/task2-submit")
     public String saveRegistration(@Valid @ModelAttribute Person person,
-                                   RedirectAttributes ra,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult,
+                                   RedirectAttributes ra) {
         /**
          * Check if there are any errors
          * If there are errors, redirect back to the form
@@ -48,8 +47,10 @@ public class RegistrationController {
          * and redirect to the confirmation page
          */
 
+
         if (bindingResult.hasErrors()) {
-            return "redirect:/task2-register";
+            ra.addFlashAttribute("person", person);
+            return "redirect:/task2";
         } else {
             ra.addFlashAttribute("person", person);
             return "redirect:/task2-success";
@@ -63,16 +64,11 @@ public class RegistrationController {
          * Get the person object from the redirect attributes
          * and add it to the model
          */
-        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+        Map<?, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
         if (inputFlashMap != null) {
             model.addAttribute("person", inputFlashMap.get("person"));
         }
         return "task2-confirmation";
-    }
-
-    @PostMapping(value="validate")
-    ResponseEntity<String> validate(@Validated @RequestBody Person person) {
-        return ResponseEntity.ok("valid");
     }
 
     @GetMapping("/task-2-savedPerson")
