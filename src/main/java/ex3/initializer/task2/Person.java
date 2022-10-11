@@ -7,27 +7,32 @@ import javax.validation.constraints.Size;
 
 public class Person {
 
+    /**
+     * We grab the custom error messages to show in <spring:message code=""/> in the jsp
+     * The messages are stored in the message.proprties file
+     */
+
     @NotNull
-    @Size(min = 3, max = 30, message="First name must be between 3 and 30 characters")
+    @Size(min = 3, max = 30, message="{invalid.fname}")
     String fname;
 
     @NotNull
-    @Size(min = 3, max = 30, message="Last name must be between 3 and 30 characters")
+    @Size(min = 3, max = 30, message="{invalid.lname}")
     String lname;
 
-    @NotNull(message="Year must be something")
+    @NotNull(message="{invalid.year}")
     int year;
 
     @NotNull
-    @Pattern(regexp = "^[0-9]{4}$", message="Area code must be 4 digits")
+    @Pattern(regexp = "^[0-9]{4}$", message="invalid.areaCode")
     String areaCode;
 
     @NotNull
-    @Pattern(regexp = "^[0-9]{8}$", message="Phone number must be 8 digits")
+    @Pattern(regexp = "^[0-9]{8}$", message="invalid.phone")
     String phone;
 
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", message="Email must be valid")
+    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", message="invalid.email")
     String email;
 
 

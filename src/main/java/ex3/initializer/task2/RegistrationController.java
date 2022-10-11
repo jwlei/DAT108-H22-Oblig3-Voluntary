@@ -3,6 +3,7 @@ package ex3.initializer.task2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -47,6 +48,7 @@ public class RegistrationController {
         if (bindingResult.hasErrors()) {
             // If any errors, redirect back to the form
             System.out.println("\n\n -------------- ERROR -------------- \n\n");
+            ra.addFlashAttribute("person", person);
             return "redirect:/task2";
         } else {
             // If no errors, add the person to the redirect attributes
