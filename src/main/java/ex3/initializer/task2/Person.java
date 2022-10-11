@@ -13,26 +13,26 @@ public class Person {
      */
 
     @NotNull
-    @Size(min = 3, max = 30, message="{invalid.fname}")
+    @Size(min = 3, max = 30, message="Name must be between 3 and 30 characters")
     String fname;
 
     @NotNull
-    @Size(min = 3, max = 30, message="{invalid.lname}")
+    @Size(min = 3, max = 30, message="Name must be between 3 and 30 characters")
     String lname;
 
-    @NotNull(message="{invalid.year}")
+    @NotNull(message="Year cannot be null")
     int year;
 
     @NotNull
-    @Pattern(regexp = "^[0-9]{4}$", message="invalid.areaCode")
+    @Pattern(regexp = "^[0-9]{4}$", message="Area code must be 4 digits")
     String areaCode;
 
     @NotNull
-    @Pattern(regexp = "^[0-9]{8}$", message="invalid.phone")
+    @Pattern(regexp = "^[0-9]{8}$", message="Phone number must be 8 digits")
     String phone;
 
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", message="invalid.email")
+    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", message="Email must be valid")
     String email;
 
 

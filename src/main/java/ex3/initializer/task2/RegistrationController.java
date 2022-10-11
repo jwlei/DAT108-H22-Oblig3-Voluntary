@@ -3,16 +3,12 @@ package ex3.initializer.task2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.Map;
 
 @Controller
 public class RegistrationController {
@@ -48,15 +44,16 @@ public class RegistrationController {
         if (bindingResult.hasErrors()) {
             // If any errors, redirect back to the form
             System.out.println("\n\n -------------- ERROR -------------- \n\n");
+            ra.addFlashAttribute("org.springframework.validation.BindingResult.person", bindingResult);
             ra.addFlashAttribute("person", person);
-            return "redirect:/task2";
+            return "redirect:task2";
         } else {
             // If no errors, add the person to the redirect attributes
             // and save the person object to the session
             // and redirect to the confirmation page
             ra.addFlashAttribute("person", person);
             session.setAttribute("person", person);
-            return "redirect:/task2-validInput";
+            return "redirect:task2-validInput";
         }
     }
 
