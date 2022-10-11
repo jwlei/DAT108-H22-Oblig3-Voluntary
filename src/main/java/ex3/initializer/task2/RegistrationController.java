@@ -9,6 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class RegistrationController {
     }
 
     @GetMapping(value ="/task2")
-    public String sendToJsp(Model model) {
+    public String getRegistrationForm(Model model) {
         /**
          * Create a new person object and add it to the model
          * if it does not already exist
@@ -37,42 +38,33 @@ public class RegistrationController {
     }
 
     @PostMapping(value ="/task2-submit")
-    public String saveRegistration(@Valid @ModelAttribute Person person,
+    public String saveRegistration(@Valid @ModelAttribute("person") Person person,
                                    BindingResult bindingResult,
-                                   RedirectAttributes ra) {
-        /**
-         * Check if there are any errors
-         * If there are errors, redirect back to the form
-         * If there are no errors, add the person to the redirect attributes
-         * and redirect to the confirmation page
-         */
+                                   RedirectAttributes ra,
+                                   HttpSession session) {
 
 
         if (bindingResult.hasErrors()) {
-            ra.addFlashAttribute("person", person);
+            // If any errors, redirect back to the form
+            System.out.println("\n\n -------------- ERROR -------------- \n\n");
             return "redirect:/task2";
         } else {
+            // If no errors, add the person to the redirect attributes
+            // and save the person object to the session
+            // and redirect to the confirmation page
             ra.addFlashAttribute("person", person);
-            return "redirect:/task2-success";
-
+            session.setAttribute("person", person);
+            return "redirect:/task2-validInput";
         }
     }
 
-    @GetMapping(value ="/task2-success")
-    public String showSuccess(Model model, HttpServletRequest request) {
+    @GetMapping(value = "/task2-validInput")
+    public String showSuccess(HttpSession session) {
         /**
-         * Get the person object from the redirect attributes
-         * and add it to the model
+         * Get the person object from the session
          */
-        Map<?, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
-        if (inputFlashMap != null) {
-            model.addAttribute("person", inputFlashMap.get("person"));
-        }
-        return "task2-confirmation";
-    }
+        session.getAttribute("person");
 
-    @GetMapping("/task-2-savedPerson")
-    public String receiveRegistration() {
         return "task2-confirmation";
     }
 }
