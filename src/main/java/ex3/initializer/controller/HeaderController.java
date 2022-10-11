@@ -10,6 +10,12 @@ import java.util.stream.Collectors;
 
 @Controller
 public class HeaderController {
+
+    /**
+     * Print the content of the header
+     * @param headers
+     * @return
+     */
     @GetMapping(value = "/headers", produces="text/plain")
     @ResponseBody
     public String headers(@RequestHeader Map<String, String> headers) {

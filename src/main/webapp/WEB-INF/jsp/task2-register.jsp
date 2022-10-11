@@ -13,27 +13,27 @@
 
                 <form:label path="fname">First Name</form:label>
                 <form:input path="fname" type="text"/>
-                <form:errors path="fname" cssClass="error"/><br>
+                <form:errors path="fname" cssClass="error"> </form:errors><br>
 
                 <form:label path="lname">Last Name</form:label>
                 <form:input path="lname" type="text"/>
-                <form:errors path="lname"/><br>
+                <form:errors path="lname" cssClass="error"> </form:errors><br>
 
                 <form:label path="year">Birthyear</form:label>
                 <form:input path="year" type="number"/>
-                <form:errors path="year" cssClass="error"/><br>
+                <form:errors path="year" cssClass="error"> </form:errors><br>
 
                 <form:label path="areaCode">Areacode</form:label>
                 <form:input path="areaCode" type="text"/>
-                <form:errors path="areaCode" cssClass="error"/><br>
+                <form:errors path="areaCode" cssClass="error"> </form:errors><br>
 
                 <form:label path="phone">Phone</form:label>
                 <form:input path="phone" type="text"/>
-                <form:errors path="phone" cssClass="error"/><br>
+                <form:errors path="phone" cssClass="error"> </form:errors><br>
 
                 <form:label path="email">Email</form:label>
                 <form:input path="email" type="text"/>
-                <form:errors path="email" cssClass="error"/><br>
+                <form:errors path="email" cssClass="error"> </form:errors><br>
 
                 <input type="submit" value="Submit"/>
             </form:form>
