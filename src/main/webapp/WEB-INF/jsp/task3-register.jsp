@@ -13,11 +13,11 @@
             <form:form action="/task3-submit" method="post" modelAttribute="person">
 
                 <form:label path="fname">First name</form:label>
-                <form:input path="fname" type="text"/>
+                <form:input path="fname" type="text" placeholder="3-20 chars"/>
                 <form:errors path="fname" cssClass="error"> </form:errors><br>
 
                 <form:label path="lname">Last name</form:label>
-                <form:input path="lname" type="text"/>
+                <form:input path="lname" type="text" placeholder="3-20 chars"/>
                 <form:errors path="lname" cssClass="error"> </form:errors><br>
 
                 <input type="submit" value="Submit"/>
