@@ -44,7 +44,7 @@ public class RegistrationController {
         if (bindingResult.hasErrors()) {
             // If any errors, redirect back to the form
             System.out.println("\n\n -------------- ERROR -------------- \n\n");
-            ra.addFlashAttribute("org.springframework.validation.BindingResult.person", bindingResult);
+            ra.addFlashAttribute("bindingResult", bindingResult);
             ra.addFlashAttribute("person", person);
             return "redirect:task2";
         } else {
