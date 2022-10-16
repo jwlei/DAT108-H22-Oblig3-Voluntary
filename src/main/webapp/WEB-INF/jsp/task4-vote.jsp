@@ -2,27 +2,24 @@
 <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form"    uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Task 2 Register</title>
+    <title>Task 4 Vote</title>
     <link rel="stylesheet" href="styles.css">
 </head>
     <body>
-        <h1>VOTE FOR ZE FRUIT</h1>
-        <label for="voteBox">Vote for your favourite fruit</label>
-        <form id="voteBox" action="/task4-submit" method="post" modelAttribute="vote" name="voteBox">
-            <label for="check_1"><fmt:message key="check_1"/></label>
-            <input type="radio" id="check_1" name="radioButtons">
-
-            <label for="check_1"><fmt:message key="check_2"/></label>
-            <input type="radio" id="check_2" name="radioButtons">
-
-            <label for="check_1"><fmt:message key="check_1"/></label>
-            <input type="radio" id="check_3" name="radioButtons">
-
+    <fieldset>
+        <legend>Task 4 Vote</legend>
+        <form action="/task4-submit" method="post">
+            <c:forEach var="fruit" items="${fruitList.fruits}">
+                <input type="radio" name="fruit" value="${fruit.name}">${fruit.name}<br>
+            </c:forEach>
             <input type="submit" value="Submit">
         </form>
-        <a href="${pageContext.request.contextPath}index.html">Return to index</a>
+    </fieldset>
+
+    <a href="${pageContext.request.contextPath}index.html">Return to index</a>
     </body>
 </html>

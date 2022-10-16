@@ -1,51 +1,49 @@
 package ex3.initializer.task4;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class VoteController {
 
+    /**
+     * This method is called when the user wants to vote for a fruit.
+     *
+     * @param session
+     * @return the name of the view to be rendered
+     */
     @GetMapping(value ="/task4")
-    public String sendToJsp(Model model, HttpServletRequest request) {
+    public String sendToJsp(HttpSession session) {
 
-       // TODO 1: Get the map from the request
+        FruitList fruitList = new FruitList();
+
+        // Add fruitlist to session
+        session.setAttribute("fruitList", fruitList);
+
+        return "task4-vote";
+    }
+
+    @GetMapping(value ="/task4-voteAgain")
+    public String sendToJspAgain() {
 
         return "task4-vote";
     }
 
     @PostMapping(value ="/task4-submit")
-    public String saveRegistration(@RequestParam("radioButtons") String chosenAlternative,
-                                   @ModelAttribute("vote") Fruit fruit,
-                                   RedirectAttributes ra) {
+    public String saveRegistration(@RequestParam("fruit") String chosenAlternative,
+                                   HttpSession session) {
 
-        // TODO 2: Add a vote to the chosen alternative
+        FruitList fruitList = (FruitList) session.getAttribute("fruitList");
 
-        ra.addFlashAttribute("vote", chosenAlternative);
-            return "redirect:/task4-success";
-    }
+        Fruit fruit = fruitList.findFruit(chosenAlternative);
+        fruit.addVote();
 
-    @GetMapping(value ="/task4-success")
-    public String showSuccess(Model model, HttpServletRequest request) {
-
-        // TODO 3: Send the persistent data to the jsp, session maybe?
-        // When we return from the voteRegistered screen to vote again the vote count
-        // should persist
-
-        Map<?, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
-        if (inputFlashMap != null) {
-            model.addAttribute("vote", inputFlashMap.get("vote"));
-        }
-        return "task4-voteRegistered";
+        return "task4-voteResult";
     }
 }
 
