@@ -21,6 +21,11 @@ public class FruitList {
         this.fruits = fruits;
     }
 
+    /**
+     * Find a fruit by name
+     * @param name
+     * @return Fruit
+     */
     public Fruit findFruit(String name) {
         return fruits.stream()
                 .filter(fruit -> fruit.getName().equals(name))

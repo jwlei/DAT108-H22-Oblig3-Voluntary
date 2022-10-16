@@ -12,34 +12,38 @@ import javax.servlet.http.HttpSession;
 public class VoteController {
 
     /**
-     * This method is called when the user wants to vote for a fruit.
-     *
+     * On first entry, create a new FruitList and add it to the session.
      * @param session
      * @return the name of the view to be rendered
      */
     @GetMapping(value ="/task4")
-    public String sendToJsp(HttpSession session) {
+    public String getVoteForm(HttpSession session) {
 
-        FruitList fruitList = new FruitList();
-
-        // Add fruitlist to session
-        session.setAttribute("fruitList", fruitList);
-
-        return "task4-vote";
-    }
-
-    @GetMapping(value ="/task4-voteAgain")
-    public String sendToJspAgain() {
+        // Check if the session already contains a FruitList
+        // If not, create a new FruitList and add it to the session
+        if (session.getAttribute("fruitList") == null) {
+            FruitList fruitList = new FruitList();
+            session.setAttribute("fruitList", fruitList);
+        }
 
         return "task4-vote";
     }
 
+
+    /**
+     * On POST, get the fruitList from the session, find the fruit and add a vote.
+     * @param chosenAlternative
+     * @param session
+     * @return
+     */
     @PostMapping(value ="/task4-submit")
-    public String saveRegistration(@RequestParam("fruit") String chosenAlternative,
-                                   HttpSession session) {
+    public String submittedVote(@RequestParam("fruit") String chosenAlternative,
+                                HttpSession session) {
 
+        // Get the FruitList from the session
         FruitList fruitList = (FruitList) session.getAttribute("fruitList");
 
+        // Find the fruit and add a vote
         Fruit fruit = fruitList.findFruit(chosenAlternative);
         fruit.addVote();
 

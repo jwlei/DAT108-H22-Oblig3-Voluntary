@@ -1,7 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form"    uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -17,7 +14,7 @@
             </ul>
         </c:forEach>
 
-        <a href="/task4-voteAgain">Vote again</a>
+        <a href="/task4">Vote again</a>
         <a href="${pageContext.request.contextPath}index.html">Return to index</a>
     </body>
 </html>
